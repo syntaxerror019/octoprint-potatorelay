@@ -183,7 +183,10 @@ class PotatorelayPlugin(octoprint.plugin.StartupPlugin,
                 physical_value = new_state
                 if relay.get("inverted"):
                     physical_value = not physical_value
-                out.output(1 if physical_value else 0)
+                if physical_value:
+                    out.high()
+                else:
+                    out.low()
             except Exception:
                 self._logger.exception(
                     "Failed to drive GPIO pin %s for relay %s", pin, relay_id

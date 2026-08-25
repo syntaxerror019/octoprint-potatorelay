@@ -1,5 +1,5 @@
 <!-- ko foreach: activeRelays -->
-<a href="#" class="btn navbar-btn" style="margin-right:4px"
+<a href="#" class="potatorelay-btn"
    data-bind="click: function(){ $parent.toggleRelay($data); },
                attr: { title: $data.label }">
     <span data-bind="html: $data.status() ? $data.icon_on : $data.icon_off"></span>
