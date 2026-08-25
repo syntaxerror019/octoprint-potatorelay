@@ -1,0 +1,147 @@
+<div id="settings_plugin_octorelay_lepotato" data-bind="with: settingsViewModel.settings.plugins.octorelay_lepotato">
+    <h3>{{ _('OctoRelay for Le Potato') }}</h3>
+    <p class="text-muted">
+        {{ _('Controls relays via GPIO on a Libre Computer "Le Potato" (AML-S905X-CC) using') }}
+        <code>libregpio</code>.
+        {{ _('Pins are referred to by their libregpio pin name, e.g.') }} <code>GPIOX_4</code>.
+    </p>
+
+    <ul class="nav nav-pills" data-bind="foreach: relays">
+        <!-- ko if: $index() < 8 -->
+        <li data-bind="css: { active: $index() == $root.octorelayActiveTab() }">
+            <a href="#" data-bind="text: 'R' + ($index()+1), click: function(){ $root.octorelayActiveTab($index()); }"></a>
+        </li>
+        <!-- /ko -->
+    </ul>
+
+    <!-- ko foreach: relays -->
+    <div data-bind="visible: $index() == $root.octorelayActiveTab()">
+        <div class="control-group">
+            <label class="checkbox">
+                <input type="checkbox" data-bind="checked: active"> {{ _('Active') }}
+            </label>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ _('Label') }}</label>
+            <div class="controls">
+                <input type="text" class="input-block-level" data-bind="value: label">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ _('Icon ON') }}</label>
+            <div class="controls">
+                <input type="text" data-bind="value: icon_on">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">{{ _('Icon OFF') }}</label>
+            <div class="controls">
+                <input type="text" data-bind="value: icon_off">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ _('GPIO pin name') }}</label>
+            <div class="controls">
+                <input type="text" placeholder="GPIOX_4" data-bind="value: pin">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="checkbox">
+                <input type="checkbox" data-bind="checked: inverted">
+                {{ _('Inverted output (normally-closed relay)') }}
+            </label>
+        </div>
+
+        <div class="control-group">
+            <label class="checkbox">
+                <input type="checkbox" data-bind="checked: confirm_off">
+                {{ _('Confirm before turning OFF') }}
+            </label>
+        </div>
+
+        <hr>
+        <div class="control-group">
+            <label class="checkbox">
+                <input type="checkbox" data-bind="checked: is_printer">
+                {{ _('This is the printer relay (connects/disconnects the printer connection)') }}
+            </label>
+        </div>
+        <div class="control-group" data-bind="visible: is_printer">
+            <label class="control-label">{{ _('AutoConnect delay (seconds)') }}</label>
+            <div class="controls">
+                <input type="number" min="0" data-bind="value: autoconnect_delay">
+            </div>
+        </div>
+
+        <hr>
+        <strong>{{ _('Events') }}</strong>
+        <div class="control-group">
+            <label class="control-label">{{ _('on Startup') }}</label>
+            <div class="controls">
+                <select data-bind="value: on_startup">
+                    <option value="skip">{{ _('skip') }}</option>
+                    <option value="on">{{ _('on') }}</option>
+                    <option value="off">{{ _('off') }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">{{ _('on Printing Started') }}</label>
+            <div class="controls">
+                <select data-bind="value: on_print_started">
+                    <option value="skip">{{ _('skip') }}</option>
+                    <option value="on">{{ _('on') }}</option>
+                    <option value="off">{{ _('off') }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">{{ _('on Printing Stopped') }}</label>
+            <div class="controls">
+                <select data-bind="value: on_print_stopped">
+                    <option value="skip">{{ _('skip') }}</option>
+                    <option value="on">{{ _('on') }}</option>
+                    <option value="off">{{ _('off') }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">{{ _('after Turned ON') }}</label>
+            <div class="controls">
+                <select data-bind="value: after_on_action">
+                    <option value="skip">{{ _('skip') }}</option>
+                    <option value="delay">{{ _('delay, then switch') }}</option>
+                </select>
+                <span data-bind="visible: after_on_action() == 'delay'">
+                    {{ _('after') }}
+                    <input type="number" min="0" style="width:70px" data-bind="value: after_on_delay">
+                    {{ _('sec, set to') }}
+                    <select data-bind="value: after_on_target">
+                        <option value="on">{{ _('on') }}</option>
+                        <option value="off">{{ _('off') }}</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+
+        <hr>
+        <strong>{{ _('Side effects') }}</strong>
+        <div class="control-group">
+            <label class="control-label">{{ _('Command ON') }}</label>
+            <div class="controls">
+                <input type="text" class="input-block-level" data-bind="value: cmd_on">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">{{ _('Command OFF') }}</label>
+            <div class="controls">
+                <input type="text" class="input-block-level" data-bind="value: cmd_off">
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>

@@ -1,0 +1,9 @@
+#navbar_plugin_octorelay_lepotato {
+    display: inline-block;
+}
+
+#navbar_plugin_octorelay_lepotato .btn {
+    padding: 3px 8px;
+    font-size: 16px;
+    line-height: 1.2;
+}

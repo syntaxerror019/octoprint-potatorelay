@@ -1,0 +1,7 @@
+<div id="navbar_plugin_octorelay_lepotato" data-bind="foreach: activeRelays">
+    <a href="#" class="btn navbar-btn" style="margin-right:4px"
+       data-bind="click: function(){ $parent.toggleRelay($data); },
+                   attr: { title: $data.label }">
+        <span data-bind="html: $data.status() ? $data.icon_on : $data.icon_off"></span>
+    </a>
+</div>
