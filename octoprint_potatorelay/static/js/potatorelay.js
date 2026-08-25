@@ -5,17 +5,20 @@ $(function () {
         self.settingsViewModel = parameters[0];
         self.loginStateViewModel = parameters[1];
 
-        self.settingsViewModel.potatorelayActiveTab = ko.observable(0);
+        self.activeTab = ko.observable(0);
         self.activeRelays = ko.observableArray([]);
-
         self.relayLookup = {};
+        self._settingsBound = false;
 
         self.rebuildActiveRelays = function () {
-            var settings = self.settingsViewModel.settings.plugins.potatorelay;
-            if (!settings) {
+            var pluginSettings = self.settingsViewModel.settings &&
+                self.settingsViewModel.settings.plugins &&
+                self.settingsViewModel.settings.plugins.potatorelay;
+            if (!pluginSettings) {
                 return;
             }
-            var relays = settings.relays();
+            var relays = pluginSettings.relays();
+            if (!relays) return;
             var active = [];
             self.relayLookup = {};
 
@@ -67,6 +70,10 @@ $(function () {
                 });
         };
 
+        self.onAfterBinding = function () {
+            self.rebuildActiveRelays();
+        };
+
         self.onUserLoggedIn = self.onStartupComplete = function () {
             self.rebuildActiveRelays();
         };
@@ -80,8 +87,20 @@ $(function () {
             }
         };
 
-        self.onSettingsShown = self.onSettingsHidden = function () {
-            self.settingsViewModel.potatorelayActiveTab(0);
+        self.onSettingsShown = function () {
+            self.activeTab(0);
+            if (!self._settingsBound) {
+                var el = document.getElementById("settings_plugin_potatorelay");
+                if (el) {
+                    ko.applyBindings(self, el);
+                    self._settingsBound = true;
+                }
+            }
+        };
+
+        self.onSettingsHidden = function () {
+            self.activeTab(0);
+            self.rebuildActiveRelays();
         };
 
         self.onSettingsBeforeSave = function () {

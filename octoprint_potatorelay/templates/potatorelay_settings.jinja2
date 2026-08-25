@@ -6,16 +6,16 @@
 </p>
 
 <form class="form-horizontal">
-    <ul class="nav nav-pills" data-bind="foreach: settings.plugins.potatorelay.relays">
+    <ul class="nav nav-pills" data-bind="foreach: settingsViewModel.settings.plugins.potatorelay.relays">
         <!-- ko if: $index() < 8 -->
-        <li data-bind="css: { active: $index() == ($root.potatorelayActiveTab ? $root.potatorelayActiveTab() : 0) }">
-            <a href="#" data-bind="text: 'R' + ($index()+1), click: function(){ if($root.potatorelayActiveTab) $root.potatorelayActiveTab($index()); }"></a>
+        <li data-bind="css: { active: $index() == $root.activeTab() }">
+            <a href="#" data-bind="text: 'R' + ($index()+1), click: function(){ $root.activeTab($index()); }"></a>
         </li>
         <!-- /ko -->
     </ul>
 
-    <!-- ko foreach: settings.plugins.potatorelay.relays -->
-    <div data-bind="visible: $index() == ($root.potatorelayActiveTab ? $root.potatorelayActiveTab() : 0)">
+    <!-- ko foreach: settingsViewModel.settings.plugins.potatorelay.relays -->
+    <div data-bind="visible: $index() == $root.activeTab()">
         <div class="control-group">
             <label class="checkbox">
                 <input type="checkbox" data-bind="checked: active"> {{ _('Active') }}
