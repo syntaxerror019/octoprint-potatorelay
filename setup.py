@@ -1,9 +1,9 @@
 # coding=utf-8
 from setuptools import setup
 
-plugin_identifier = "octorelay_lepotato"
-plugin_package = "octoprint_octorelay_lepotato"
-plugin_name = "OctoPrint-OctoRelay-LePotato"
+plugin_identifier = "potatorelay"
+plugin_package = "octoprint_potatorelay"
+plugin_name = "OctoPrint-PotatoRelay"
 plugin_version = "0.1.0"
 plugin_description = (
     "Control up to 8 relays via GPIO on a Libre Computer 'Le Potato' "
@@ -11,11 +11,11 @@ plugin_description = (
     "custom icons/labels, navbar buttons, GCODE commands, REST API, "
     "printer-relay autoconnect, event-based automation, OS command side effects."
 )
-plugin_author = "You"
-plugin_author_email = "you@example.com"
-plugin_url = "https://github.com/YOURUSER/OctoRelay-LePotato"
+plugin_author = "Miles Hilliard"
+plugin_author_email = "miles@mileshilliard.com"
+plugin_url = "https://github.com/syntaxerror019/octoprint-potatorelay"
 plugin_license = "AGPLv3"
-plugin_requires = ["libregpio"]
+plugin_requires = [""]
 
 plugin_additional_data = []
 plugin_additional_packages = []
