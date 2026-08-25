@@ -1,17 +1,17 @@
 $(function () {
-    function OctorelayLepotatoViewModel(parameters) {
+    function PotatorelayViewModel(parameters) {
         var self = this;
 
         self.settingsViewModel = parameters[0];
         self.loginStateViewModel = parameters[1];
 
-        self.octorelayActiveTab = ko.observable(0);
+        self.potatorelayActiveTab = ko.observable(0);
         self.activeRelays = ko.observableArray([]);
 
         self.relayLookup = {};
 
         self.rebuildActiveRelays = function () {
-            var settings = self.settingsViewModel.settings.plugins.octorelay_lepotato;
+            var settings = self.settingsViewModel.settings.plugins.potatorelay;
             if (!settings) {
                 return;
             }
@@ -41,7 +41,7 @@ $(function () {
         };
 
         self.refreshAllStatus = function () {
-            OctoPrint.simpleApiCommand("octorelay_lepotato", "listAllStatus", {})
+            OctoPrint.simpleApiCommand("potatorelay", "listAllStatus", {})
                 .done(function (response) {
                     (response || []).forEach(function (item) {
                         var entry = self.relayLookup[item.id];
@@ -51,7 +51,7 @@ $(function () {
                     });
                 })
                 .fail(function () {
-                    console.log("octorelay_lepotato: failed to fetch relay statuses");
+                    console.log("potatorelay: failed to fetch relay statuses");
                 });
         };
 
@@ -61,7 +61,7 @@ $(function () {
                     return;
                 }
             }
-            OctoPrint.simpleApiCommand("octorelay_lepotato", "update", {subject: relay.id})
+            OctoPrint.simpleApiCommand("potatorelay", "update", {subject: relay.id})
                 .done(function (response) {
                     relay.status(!!response.status);
                 });
@@ -72,7 +72,7 @@ $(function () {
         };
 
         self.onDataUpdaterPluginMessage = function (plugin, data) {
-            if (plugin !== "octorelay_lepotato") {
+            if (plugin !== "potatorelay") {
                 return;
             }
             if (data.type === "status" && self.relayLookup[data.id]) {
@@ -81,7 +81,7 @@ $(function () {
         };
 
         self.onSettingsShown = self.onSettingsHidden = function () {
-            self.octorelayActiveTab(0);
+            self.potatorelayActiveTab(0);
         };
 
         self.onSettingsBeforeSave = function () {
@@ -90,8 +90,8 @@ $(function () {
     }
 
     OCTOPRINT_VIEWMODELS.push({
-        construct: OctorelayLepotatoViewModel,
+        construct: PotatorelayViewModel,
         dependencies: ["settingsViewModel", "loginStateViewModel"],
-        elements: ["#navbar_plugin_octorelay_lepotato", "#settings_plugin_octorelay_lepotato"]
+        elements: ["#navbar_plugin_potatorelay", "#settings_plugin_potatorelay"]
     });
 });

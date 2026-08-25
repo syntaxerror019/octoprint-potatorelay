@@ -1,4 +1,4 @@
-# OctoPrint-OctoRelay-LePotato
+# OctoPrint-PotatoRelay
 
 An [OctoRelay](https://github.com/borisbu/OctoRelay)-style relay control plugin for OctoPrint,
 built for the **Libre Computer "Le Potato" (AML-S905X-CC)**, using
@@ -59,7 +59,7 @@ header reference for the Le Potato to find the correct pin names:
 Same request/response shape as OctoRelay:
 
 ```bash
-curl 'http://octopi.local/api/plugin/octorelay_lepotato' \
+curl 'http://octopi.local/api/plugin/potatorelay' \
   -H 'X-Api-Key: YOUR_API_KEY' \
   -H 'Content-Type: application/json' \
   -X POST \

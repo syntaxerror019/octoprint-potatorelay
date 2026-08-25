@@ -38,7 +38,7 @@ def default_relay(index):
     )
 
 
-class OctorelayLepotatoPlugin(octoprint.plugin.StartupPlugin,
+class PotatorelayPlugin(octoprint.plugin.StartupPlugin,
                                octoprint.plugin.ShutdownPlugin,
                                octoprint.plugin.SettingsPlugin,
                                octoprint.plugin.TemplatePlugin,
@@ -287,8 +287,8 @@ class OctorelayLepotatoPlugin(octoprint.plugin.StartupPlugin,
 
     def get_assets(self):
         return dict(
-            js=["js/octorelay_lepotato.js"],
-            css=["css/octorelay_lepotato.css"],
+            js=["js/potatorelay.js"],
+            css=["css/potatorelay.css"],
         )
 
     # ---------------------------------------------------------------
@@ -371,23 +371,23 @@ class OctorelayLepotatoPlugin(octoprint.plugin.StartupPlugin,
 
     def get_update_information(self):
         return dict(
-            octorelay_lepotato=dict(
-                displayName="OctoRelay for Le Potato",
+            potatorelay=dict(
+                displayName="potatorelay",
                 displayVersion=self._plugin_version,
                 type="github_release",
                 current=self._plugin_version,
-                pip="https://github.com/YOURUSER/OctoRelay-LePotato/archive/{target_version}.zip",
+                pip="https://github.com/syntaxerror019/octoprint-potatorelay/archive/{target_version}.zip",
             )
         )
 
 
-__plugin_name__ = "OctoRelay for Le Potato"
+__plugin_name__ = "potatorelay"
 __plugin_pythoncompat__ = ">=3,<4"
 
 
 def __plugin_load__():
     global __plugin_implementation__
-    __plugin_implementation__ = OctorelayLepotatoPlugin()
+    __plugin_implementation__ = PotatorelayPlugin()
 
     global __plugin_hooks__
     __plugin_hooks__ = {
