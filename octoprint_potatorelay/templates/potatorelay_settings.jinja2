@@ -1,21 +1,21 @@
-<div id="settings_plugin_potatorelay" data-bind="with: settings.plugins.potatorelay">
-    <h3>{{ _('Le Potato Relay') }}</h3>
-    <p class="text-muted">
-        {{ _('Controls relays via GPIO on a Libre Computer "Le Potato" (AML-S905X-CC) using') }}
-        <code>libregpio</code>.
-        {{ _('Pins are referred to by their libregpio pin name, e.g.') }} <code>GPIOX_4</code>.
-    </p>
+<h3>{{ _('Le Potato Relay') }}</h3>
+<p class="text-muted">
+    {{ _('Controls relays via GPIO on a Libre Computer "Le Potato" (AML-S905X-CC) using') }}
+    <code>libregpio</code>.
+    {{ _('Pins are referred to by their libregpio pin name, e.g.') }} <code>GPIOX_4</code>.
+</p>
 
-    <ul class="nav nav-pills" data-bind="foreach: relays">
+<form class="form-horizontal">
+    <ul class="nav nav-pills" data-bind="foreach: settings.plugins.potatorelay.relays">
         <!-- ko if: $index() < 8 -->
-        <li data-bind="css: { active: $index() == $root.potatorelayActiveTab() }">
-            <a href="#" data-bind="text: 'R' + ($index()+1), click: function(){ $root.potatorelayActiveTab($index()); }"></a>
+        <li data-bind="css: { active: $index() == ($root.potatorelayActiveTab ? $root.potatorelayActiveTab() : 0) }">
+            <a href="#" data-bind="text: 'R' + ($index()+1), click: function(){ if($root.potatorelayActiveTab) $root.potatorelayActiveTab($index()); }"></a>
         </li>
         <!-- /ko -->
     </ul>
 
-    <!-- ko foreach: relays -->
-    <div data-bind="visible: $index() == $root.potatorelayActiveTab()">
+    <!-- ko foreach: settings.plugins.potatorelay.relays -->
+    <div data-bind="visible: $index() == ($root.potatorelayActiveTab ? $root.potatorelayActiveTab() : 0)">
         <div class="control-group">
             <label class="checkbox">
                 <input type="checkbox" data-bind="checked: active"> {{ _('Active') }}
@@ -144,4 +144,4 @@
         </div>
     </div>
     <!-- /ko -->
-</div>
+</form>
