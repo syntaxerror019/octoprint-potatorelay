@@ -278,7 +278,7 @@ class PotatorelayPlugin(octoprint.plugin.StartupPlugin,
     def get_template_configs(self):
         return [
             dict(type="navbar", custom_bindings=True),
-            dict(type="settings", custom_bindings=True),
+            dict(type="settings", custom_bindings=False),
         ]
 
     # ---------------------------------------------------------------
@@ -372,7 +372,7 @@ class PotatorelayPlugin(octoprint.plugin.StartupPlugin,
     def get_update_information(self):
         return dict(
             potatorelay=dict(
-                displayName="potatorelay",
+                displayName="Le Potato Relay",
                 displayVersion=self._plugin_version,
                 type="github_release",
                 current=self._plugin_version,
@@ -381,7 +381,7 @@ class PotatorelayPlugin(octoprint.plugin.StartupPlugin,
         )
 
 
-__plugin_name__ = "potatorelay"
+__plugin_name__ = "Le Potato Relay"
 __plugin_pythoncompat__ = ">=3,<4"
 
 

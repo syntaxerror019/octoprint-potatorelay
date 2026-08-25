@@ -5,7 +5,7 @@ $(function () {
         self.settingsViewModel = parameters[0];
         self.loginStateViewModel = parameters[1];
 
-        self.potatorelayActiveTab = ko.observable(0);
+        self.settingsViewModel.potatorelayActiveTab = ko.observable(0);
         self.activeRelays = ko.observableArray([]);
 
         self.relayLookup = {};
@@ -81,7 +81,7 @@ $(function () {
         };
 
         self.onSettingsShown = self.onSettingsHidden = function () {
-            self.potatorelayActiveTab(0);
+            self.settingsViewModel.potatorelayActiveTab(0);
         };
 
         self.onSettingsBeforeSave = function () {
@@ -92,6 +92,6 @@ $(function () {
     OCTOPRINT_VIEWMODELS.push({
         construct: PotatorelayViewModel,
         dependencies: ["settingsViewModel", "loginStateViewModel"],
-        elements: ["#navbar_plugin_potatorelay", "#settings_plugin_potatorelay"]
+        elements: ["#navbar_plugin_potatorelay"]
     });
 });
