@@ -44,7 +44,10 @@ From the plugin's source directory:
 ```
 
 Or via the OctoPrint Plugin Manager's
-"Install from URL" using the archive URL of your repo.
+"Install from URL":
+```
+https://github.com/syntaxerror019/octoprint-potatorelay/archive/refs/heads/main.zip
+```
 
 ## Configuring pins
 
