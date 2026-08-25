@@ -11,7 +11,7 @@ built for the **Libre Computer "Le Potato" (AML-S905X-CC)**, using
 - Toggle relays from:
   - The navbar buttons
   - GCODE: `@OCTORELAY r1 [ON|OFF]` (omit ON/OFF to toggle)
-  - The REST API (`update`, `getStatus`, `listAllStatus` — same shape as OctoRelay's API)
+  - The REST API (`update`, `getStatus`, `listAllStatus` , same shape as OctoRelay's API)
 - Inverted output support (for normally-closed relays)
 - Optional confirmation dialog before turning a relay OFF
 - "Printer relay" mode: disconnects the printer when turned OFF, and
@@ -24,7 +24,7 @@ built for the **Libre Computer "Le Potato" (AML-S905X-CC)**, using
 
 - A Libre Computer Le Potato (or compatible AML-S905X-CC board) running OctoPrint
 - Python 3
-- [`libregpio`](https://pypi.org/project/libregpio/) — installed automatically as a dependency
+- [`libregpio`](https://libregpio.readthedocs.io/en/latest/installation.html) , installed via `apt` as a dependency
 - The `octoprint` user needs permission to access `/dev/gpiochip*`. If relays
   don't respond, add the user running OctoPrint to the `gpio` group (create it
   if it doesn't exist) and reboot:
@@ -73,11 +73,11 @@ Commands: `update` (subject, optional target bool), `getStatus` (subject),
 
 - Pin naming uses libregpio's string pin names instead of BCM numbers.
 - The settings UI here is simplified (a single set of tabbed fields) rather
-  than OctoRelay's full multi-widget settings panel — all the same
+  than OctoRelay's full multi-widget settings panel , all the same
   per-relay options are present, just laid out more plainly.
 - "Alert on switches ahead" (from upstream OctoRelay) isn't implemented.
 - `libregpio`'s PWM class is explicitly noted upstream as unreliable, so PWM
-  dimming isn't exposed here — only straightforward ON/OFF switching.
-- This hasn't been hardware-tested against a live Le Potato + relay board —
+  dimming isn't exposed here , only straightforward ON/OFF switching.
+- This hasn't been hardware-tested against a live Le Potato + relay board ,
   treat it as a solid starting point and check `~/.octoprint/logs/octoprint.log`
   while wiring things up.
