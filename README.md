@@ -43,7 +43,7 @@ From the plugin's source directory:
 ~/oprint/bin/pip install .
 ```
 
-Or, once pushed to a git repo, via the OctoPrint Plugin Manager's
+Or via the OctoPrint Plugin Manager's
 "Install from URL" using the archive URL of your repo.
 
 ## Configuring pins
@@ -52,7 +52,7 @@ Unlike Raspberry Pi's numeric GPIO scheme, `libregpio` addresses pins by
 **name**, e.g. `GPIOX_4`, `GPIOX_5`, `GPIOAO_2`. Enter the pin name (not a
 number) in each relay's "GPIO pin name" field. See the Libre Computer GPIO
 header reference for the Le Potato to find the correct pin names:
-<https://libre.computer/blogs/gpio-headers-reference-for-aml-s905x-cc/>
+<https://docs.google.com/spreadsheets/d/1U3z0Gb8HUEfCIMkvqzmhMpJfzRqjPXq7mFLC-hvbKlE/edit?pli=1&gid=0#gid=0/>
 
 ## API
 
